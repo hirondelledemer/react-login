@@ -7,6 +7,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
+    publicPath: '/',
   },
   plugins: require('./webpack.plugins'),
   resolve: {
@@ -17,6 +18,7 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   devServer: {
     open: true,
+    historyApiFallback: true,
   },
   optimization: {
     splitChunks: {
