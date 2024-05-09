@@ -19,6 +19,7 @@ module.exports = {
   devServer: {
     open: true,
     historyApiFallback: true,
+    port: 3000,
   },
   optimization: {
     splitChunks: {
