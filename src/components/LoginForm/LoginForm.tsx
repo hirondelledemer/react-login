@@ -1,9 +1,10 @@
 import { useLogin } from '@src/hooks/use-login';
 import React, { FormEvent, useState } from 'react';
 import UserIcon from '../icons/User';
-import Input from '../Input/Input';
+import Input from '../Input';
 import PasswordIcon from '../icons/Password';
-import Button from '../Button/Button';
+import Button from '../Button';
+import Tooltip from '../Tooltip';
 
 const Login: React.FC = () => {
   const [login, isLoading, serverError] = useLogin();
@@ -72,13 +73,17 @@ const Login: React.FC = () => {
                 <Button type='submit' disabled={isLoading}>
                   Login
                 </Button>
-
-                <a
-                  href='#'
-                  className='inline-block mt-4 text-center text-blue-500 md:mt-0 md:mx-6 hover:underline dark:text-blue-400'
+                <Tooltip
+                  content={
+                    <>
+                      Username: tesonet <br /> Password: partyanimal
+                    </>
+                  }
                 >
-                  Forgot your password?
-                </a>
+                  <a className='inline-block mt-4 text-center text-blue-500 md:mt-0 md:mx-6 hover:underline dark:text-blue-400'>
+                    Forgot your password?
+                  </a>
+                </Tooltip>
               </div>
               {serverError && (
                 <div className='text-red-500 mt-4'>{serverError.message}</div>
