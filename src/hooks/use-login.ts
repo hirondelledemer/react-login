@@ -25,7 +25,7 @@ export const useLogin = (): [(input: InputProps) => void, boolean, Error] => {
       });
 
       if (!res.ok) {
-        throw new Error('username or password is not valid');
+        throw new Error('Username or password is not valid');
       }
 
       return await res.json();

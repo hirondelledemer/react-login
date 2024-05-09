@@ -2,17 +2,16 @@ import '@testing-library/jest-dom';
 
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import Login from './Login';
+import LoginForm from './LoginForm';
 import * as loginHooks from '@src/hooks/use-login';
 
-// todo: probably not needed
 describe('Login', () => {
   it('should username and password inputs', async () => {
     jest
       .spyOn(loginHooks, 'useLogin')
       .mockImplementation(() => [jest.fn(), false, undefined]);
 
-    render(<Login />);
+    render(<LoginForm />);
 
     const userNameInput = screen.getByRole('textbox', { name: /username/i });
     // currently password input has no role: issue for reference:
@@ -32,7 +31,7 @@ describe('Login', () => {
       .spyOn(loginHooks, 'useLogin')
       .mockImplementation(() => [loginSpy, false, undefined]);
 
-    render(<Login />);
+    render(<LoginForm />);
 
     const userNameInput = screen.getByRole('textbox', { name: /username/i });
     const passwordInput = document.querySelector('input[type="password"]');
@@ -51,7 +50,7 @@ describe('Login', () => {
         .spyOn(loginHooks, 'useLogin')
         .mockImplementation(() => [jest.fn(), true, undefined]);
 
-      render(<Login />);
+      render(<LoginForm />);
 
       const loginButton = screen.getByRole('button');
 
@@ -76,7 +75,7 @@ describe('Login', () => {
             new Error('username or password is not valid'),
           ]);
 
-        render(<Login />);
+        render(<LoginForm />);
 
         const errorMessage = screen.getByText(
           'username or password is not valid',

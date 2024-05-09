@@ -19,6 +19,7 @@ module.exports = [
     use: ['style-loader', 'css-loader', 'postcss-loader'],
   },
   // {
+  //todo: remove
   //   // scss
   //   test: /\.s[ac]ss$/i,
   //   use: [
