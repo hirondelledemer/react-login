@@ -44,7 +44,6 @@ const Login: React.FC = () => {
                 </span>
 
                 <Input
-                  type='email'
                   name='username'
                   placeholder='Username'
                   aria-label='username'

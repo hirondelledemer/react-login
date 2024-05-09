@@ -5,7 +5,7 @@ import { useAuth } from '@src/hooks/use-auth';
 import { useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
-  const { token } = useAuth();
+  const { token, setToken } = useAuth();
 
   const { pathname } = useLocation();
 
@@ -23,6 +23,11 @@ const Header: React.FC = () => {
         {!token && (
           <HeaderLink href={LOGIN} active={pathname === LOGIN}>
             Login
+          </HeaderLink>
+        )}
+        {token && (
+          <HeaderLink href={LOGIN} onClick={() => setToken(undefined)}>
+            Logout
           </HeaderLink>
         )}
       </div>
