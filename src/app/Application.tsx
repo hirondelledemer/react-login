@@ -5,6 +5,7 @@ import Login from '../pages/Login';
 import { ProtectedRoutes } from './ProtectedRoutes';
 import Servers from '@src/pages/Severs';
 import { HOME, LOGIN, SERVERS } from '@src/utils/consts/routes';
+import '../index.css';
 
 const Application: React.FC = () => (
   // todo: add error page

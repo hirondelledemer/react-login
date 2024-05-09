@@ -2,24 +2,18 @@ import '@testing-library/jest-dom';
 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Home from './Home';
-import { BrowserRouter } from 'react-router-dom';
 import * as authHooks from '@src/hooks/use-auth';
+import Header from './Header';
 
-describe('Home', () => {
-  //todo: duplicate code
+describe('HeaderLink', () => {
   describe('user is logged in', () => {
     it('should not show login button', async () => {
       jest
         .spyOn(authHooks, 'useAuth')
         .mockImplementation(() => ({ token: 'token', setToken: jest.fn() }));
 
-      // todo: consider exporting browserRouter to utils folder
-      render(
-        <BrowserRouter>
-          <Home />
-        </BrowserRouter>,
-      );
+      render(<Header />);
+      screen.logTestingPlaygroundURL();
 
       expect(
         screen.queryByRole('link', { name: /login/i }),
@@ -33,11 +27,7 @@ describe('Home', () => {
         .spyOn(authHooks, 'useAuth')
         .mockImplementation(() => ({ token: undefined, setToken: jest.fn() }));
 
-      render(
-        <BrowserRouter>
-          <Home />
-        </BrowserRouter>,
-      );
+      render(<Header />);
 
       expect(screen.getByRole('link', { name: /login/i })).toBeInTheDocument();
     });
