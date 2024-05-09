@@ -1,8 +1,8 @@
+import { TOKEN_KEY } from '@src/utils/consts/local-storage';
 import { useQuery } from '@tanstack/react-query';
 
 export function getToken(): string | undefined {
-  const token = localStorage.getItem('token');
-  console.log('token', token);
+  const token = localStorage.getItem(TOKEN_KEY);
   return token || undefined;
 }
 

@@ -1,3 +1,4 @@
+import { TOKEN_KEY } from '@src/utils/consts/local-storage';
 import { HOME } from '@src/utils/consts/routes';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +31,7 @@ export const useLogin = (): [(input: InputProps) => void, boolean, Error] => {
     },
     onSuccess: async (res) => {
       const data = await res.json();
-      localStorage.setItem('token', data.token);
+      localStorage.setItem(TOKEN_KEY, data.token);
       navigate(HOME);
     },
   });
