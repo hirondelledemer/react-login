@@ -1,7 +1,8 @@
 import React from 'react';
-import SortDownIcon from '../icons/SortDown';
 import ArrowLeft from '../icons/ArrowLeft';
 import ArrowRight from '../icons/ArrowRight';
+import { useSortableData } from '@src/hooks/use-sortable-data';
+import SortButton from '../SortButton';
 
 export interface ColumnProps<T> {
   key: string;
@@ -14,7 +15,12 @@ interface TableProps<T> {
   data?: T[];
 }
 
+//todo: test
 const Table = <T,>({ data, columns }: TableProps<T>) => {
+  const { items, requestSort, sortConfig } = useSortableData<any>(data, null); //todo: types
+
+  console.log(sortConfig);
+
   const headers = columns.map((column, index) => {
     return (
       <th
@@ -22,22 +28,28 @@ const Table = <T,>({ data, columns }: TableProps<T>) => {
         scope='col'
         className='px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400'
       >
-        <button className='flex items-center gap-x-2'>
+        <button
+          className='flex items-center gap-x-2'
+          onClick={() => requestSort(column.key)}
+        >
           <span>{column.title}</span>
-          <SortDownIcon />
+          <SortButton
+            active={sortConfig && sortConfig.key === column.key}
+            direction={sortConfig && sortConfig.direction}
+          />
         </button>
       </th>
     );
   });
 
-  const rows = !data?.length ? (
+  const rows = !items?.length ? (
     <tr>
       <td colSpan={columns.length} className='text-center'>
         No data //todo: show empty state
       </td>
     </tr>
   ) : (
-    data?.map((row, index) => {
+    items?.map((row, index) => {
       return (
         <tr key={`tr-${index}`}>
           {columns.map((column, index2) => {
