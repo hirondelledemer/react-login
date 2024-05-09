@@ -2,13 +2,11 @@ import { Server, useServersList } from '@src/hooks/use-servers';
 import React from 'react';
 import Table from '../Table';
 import { ColumnProps } from '../Table/Table';
+import Skeleton from '../Skeleton';
 
 const ServersList: React.FC = () => {
   const { data, isLoading, error } = useServersList();
 
-  if (isLoading) {
-    return <div>loading</div>;
-  }
   if (error) {
     return <div>{error.message}</div>;
   }
@@ -23,7 +21,16 @@ const ServersList: React.FC = () => {
     },
   ];
 
-  return <Table data={data} columns={columns} />;
+  return (
+    <section className='bg-white px-40 dark:bg-gray-900 min-h-screen min-w-screen py-10'>
+      <div className='flex items-center gap-x-3'>
+        <h2 className='text-lg font-medium text-gray-800 dark:text-white'>
+          Severs
+        </h2>
+      </div>
+      {isLoading ? <Skeleton /> : <Table data={data} columns={columns} />}
+    </section>
+  );
 };
 
 export default ServersList;

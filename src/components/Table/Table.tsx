@@ -79,13 +79,7 @@ const Table = <T,>({ data, columns }: TableProps<T>) => {
 
   //todo: check mobile view
   return (
-    <section className='bg-white px-40 dark:bg-gray-900 min-h-screen min-w-screen py-10'>
-      <div className='flex items-center gap-x-3'>
-        <h2 className='text-lg font-medium text-gray-800 dark:text-white'>
-          Severs
-        </h2>
-      </div>
-
+    <>
       <div className='flex flex-col mt-6'>
         <div className='-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
@@ -165,7 +159,7 @@ const Table = <T,>({ data, columns }: TableProps<T>) => {
           <ArrowRight />
         </a>
       </div>
-    </section>
+    </>
   );
 };
 
