@@ -1,8 +1,9 @@
 import { useServersList } from '@src/hooks/use-servers';
 import React from 'react';
-import SortingIcon from '../icons/Sorting';
+import SortDownIcon from '../icons/SortDown';
 import ArrowLeft from '../icons/ArrowLeft';
 import ArrowRight from '../icons/ArrowRight';
+import SortUpIcon from '../icons/SortUp';
 
 const ServersList: React.FC = () => {
   const { data, isLoading, error } = useServersList();
@@ -36,7 +37,7 @@ const ServersList: React.FC = () => {
                     >
                       <button className='flex items-center gap-x-2'>
                         <span>Server Name</span>
-                        <SortingIcon />
+                        <SortDownIcon />
                       </button>
                     </th>
                     <th
@@ -46,7 +47,7 @@ const ServersList: React.FC = () => {
                       <button className='flex items-center gap-x-2'>
                         <span>Location</span>
 
-                        <SortingIcon />
+                        <SortUpIcon />
                       </button>
                     </th>
                   </tr>
