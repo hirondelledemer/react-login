@@ -2,7 +2,7 @@ import { TOKEN_KEY } from '@src/utils/consts/local-storage';
 import { useQuery } from '@tanstack/react-query';
 import { useLocalStorage } from './use-local-storage';
 
-interface Server {
+export interface Server {
   name: string;
   distance: number;
 }
