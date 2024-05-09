@@ -1,13 +1,15 @@
+import { useAuth } from '@src/hooks/use-auth';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// todo: clean
 const Home: React.FC = () => {
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   return (
     <div>
-      <button onClick={() => navigate('/login')}>login</button>
+      Home page
+      {!token && <button onClick={() => navigate('/login')}>login</button>}
     </div>
   );
 };
