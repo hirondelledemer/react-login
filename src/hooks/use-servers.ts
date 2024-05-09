@@ -1,15 +1,13 @@
 import { TOKEN_KEY } from '@src/utils/consts/local-storage';
 import { useQuery } from '@tanstack/react-query';
+import { useLocalStorage } from './use-local-storage';
 
-export function getToken(): string | undefined {
-  const token = localStorage.getItem(TOKEN_KEY);
-  return token || undefined;
+interface Server {
+  name: string;
+  distance: number;
 }
 
-// todo: clean
-export const fetchServersList = async () => {
-  console.log('fetching');
-  const token = getToken();
+export const fetchServersList = async (token: string) => {
   const res = await fetch('https://playground.tesonet.lt/v1/servers', {
     headers: {
       Accept: 'application/json',
@@ -17,17 +15,22 @@ export const fetchServersList = async () => {
     },
   });
   if (!res.ok) {
-    console.log('I am here');
-    // throw new Error('Network response was not ok');
-    return "new Error('Network response was not ok')";
+    if (res.status === 401) {
+      throw new Error('unauthorized');
+    }
+    throw new Error('oops, something went wrong');
   }
-  console.log('res', res);
+
   const data = await res.json();
-  console.log(data);
 
   return data;
 };
 
 export const useServersList = () => {
-  return useQuery({ queryKey: ['servers'], queryFn: fetchServersList });
+  const [token] = useLocalStorage<string>(TOKEN_KEY, undefined);
+  return useQuery<Server[]>({
+    queryKey: ['servers'],
+    queryFn: () => fetchServersList(token),
+    enabled: !!token,
+  });
 };

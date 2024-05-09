@@ -1,7 +1,7 @@
-import { TOKEN_KEY } from '@src/utils/consts/local-storage';
-import { HOME } from '@src/utils/consts/routes';
+import { SERVERS } from '@src/utils/consts/routes';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './use-auth';
 
 interface InputProps {
   username: string;
@@ -9,6 +9,7 @@ interface InputProps {
 }
 
 export const useLogin = (): [(input: InputProps) => void, boolean, Error] => {
+  const { setToken } = useAuth();
   const navigate = useNavigate();
   const { mutate, isPending, error } = useMutation({
     mutationFn: async (params: InputProps) => {
@@ -27,12 +28,11 @@ export const useLogin = (): [(input: InputProps) => void, boolean, Error] => {
         throw new Error('username or password is not valid');
       }
 
-      return res;
+      return await res.json();
     },
-    onSuccess: async (res) => {
-      const data = await res.json();
-      localStorage.setItem(TOKEN_KEY, data.token);
-      navigate(HOME);
+    onSuccess: async (data) => {
+      setToken(data.token);
+      navigate(SERVERS);
     },
   });
 
