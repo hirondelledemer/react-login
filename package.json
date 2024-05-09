@@ -56,5 +56,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@src(.*)$": "<rootDir>/src$1",
+      "^@assets(.*)$": "<rootDir>/assets$1"
+    }
   }
 }

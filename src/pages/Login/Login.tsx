@@ -1,9 +1,8 @@
 import { useLogin } from '@src/hooks/use-login';
 import React, { FormEvent, useState } from 'react';
 
-// todo: clean
 const Login: React.FC = () => {
-  const [login, isLoading, error] = useLogin();
+  const [login, isLoading, serverError] = useLogin();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -20,6 +19,7 @@ const Login: React.FC = () => {
           name='username'
           aria-label='username'
           value={username}
+          required
           onChange={(e) => setUsername(e.target.value)}
         />
         <label htmlFor='password'>Password</label>
@@ -28,11 +28,13 @@ const Login: React.FC = () => {
           aria-label='password'
           type='password'
           value={password}
+          required
           onChange={(e) => setPassword(e.target.value)}
         />
-        {error && <div>{error.message}</div>}
-        {isLoading && <div>loading</div>}
-        <button type='submit'>Login</button>
+        {serverError && <div>{serverError.message}</div>}
+        <button type='submit' disabled={isLoading}>
+          Login
+        </button>
       </form>
     </div>
   );

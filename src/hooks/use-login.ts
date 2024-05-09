@@ -9,7 +9,7 @@ interface InputProps {
 
 export const useLogin = (): [(input: InputProps) => void, boolean, Error] => {
   const navigate = useNavigate();
-  const { mutate, isPending, isError, error } = useMutation({
+  const { mutate, isPending, error } = useMutation({
     mutationFn: async (params: InputProps) => {
       const url = 'https://playground.tesonet.lt/v1/tokens';
 
@@ -22,23 +22,14 @@ export const useLogin = (): [(input: InputProps) => void, boolean, Error] => {
         body: JSON.stringify(params),
       });
 
-      // todo: handle errors
       if (!res.ok) {
-        console.log('I am here');
-        throw new Error('Network response was not ok');
-        // return { message: 'error while loggin in' };
+        throw new Error('username or password is not valid');
       }
 
       return res;
     },
-    // todo: rethink
-    onError: (error) => {
-      console.log('error', error);
-    },
     onSuccess: async (res) => {
       const data = await res.json();
-      console.log('data', data);
-      console.log(data.token);
       localStorage.setItem('token', data.token);
       navigate(HOME);
     },
@@ -46,7 +37,6 @@ export const useLogin = (): [(input: InputProps) => void, boolean, Error] => {
 
   const login = async (input: InputProps) => {
     mutate(input);
-    console.log(isError, error);
   };
 
   return [login, isPending, error];
