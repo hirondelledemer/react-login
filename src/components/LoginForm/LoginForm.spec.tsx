@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import LoginForm from './LoginForm';
 import * as loginHooks from '@src/hooks/use-login';
 
-describe('Login', () => {
+describe('LoginForm', () => {
   it('should username and password inputs', async () => {
     jest
       .spyOn(loginHooks, 'useLogin')
