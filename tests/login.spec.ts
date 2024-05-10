@@ -51,8 +51,6 @@ test.describe('Login', () => {
   });
 });
 
-//todo: remove this comment
-
 const getDriver = ({ page }: { page: Page }) => {
   const usernameInput = page.getByPlaceholder('username');
   const passwordInput = page.getByPlaceholder('password');
