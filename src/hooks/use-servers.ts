@@ -1,11 +1,7 @@
 import { TOKEN_KEY } from '@src/utils/consts/local-storage';
 import { useQuery } from '@tanstack/react-query';
 import { useLocalStorage } from './use-local-storage';
-
-export interface Server {
-  name: string;
-  distance: number;
-}
+import { Server } from '@src/utils/types/servers';
 
 export const fetchServersList = async (token: string) => {
   const res = await fetch('https://playground.tesonet.lt/v1/servers', {

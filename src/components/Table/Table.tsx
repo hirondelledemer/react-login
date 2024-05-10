@@ -5,7 +5,7 @@ import { useSortableData } from '@src/hooks/use-sortable-data';
 import SortButton from '../SortButton';
 
 export interface ColumnProps<T> {
-  key: string;
+  key: keyof T;
   title: string;
   render?: (column: ColumnProps<T>, item: T) => string;
 }
@@ -17,9 +17,7 @@ interface TableProps<T> {
 
 //todo: test
 const Table = <T,>({ data, columns }: TableProps<T>) => {
-  const { items, requestSort, sortConfig } = useSortableData<any>(data, null); //todo: types
-
-  console.log(sortConfig);
+  const { items, requestSort, sortConfig } = useSortableData<T>(data, null);
 
   const headers = columns.map((column, index) => {
     return (

@@ -1,4 +1,4 @@
-import { Server } from '@src/hooks/use-servers';
+import { Server } from '@src/utils/types/servers';
 
 export const serversData: Server[] = [
   {
