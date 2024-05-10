@@ -1,21 +1,4 @@
-import { test, expect, Page, TestInfo } from '@playwright/test';
-
-// export const configureSnapshotPath =
-//   () =>
-//   (_: any, testInfo: TestInfo): any => {
-//     const originalSnapshotPath = testInfo.snapshotPath;
-
-//     testInfo.snapshotPath = (snapshotName) => {
-//       const result = originalSnapshotPath
-//         .apply(testInfo, [snapshotName])
-//         .replace('-linux', '')
-//         .replace('-darwin', '');
-
-//       return result;
-//     };
-//   };
-
-// test.beforeEach(configureSnapshotPath());
+import { test, expect, Page } from '@playwright/test';
 
 test.describe('Login', () => {
   test.describe('happy path', () => {
