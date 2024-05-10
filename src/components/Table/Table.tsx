@@ -68,6 +68,7 @@ const Table = <T,>({ data, columns }: TableProps<T>) => {
   });
 
   //todo: check mobile view
+  //todo: check pagination
   return (
     <>
       <div className='flex flex-col mt-6'>

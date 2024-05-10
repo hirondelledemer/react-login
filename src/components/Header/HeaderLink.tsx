@@ -1,15 +1,15 @@
 import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 
-type Ref = HTMLAnchorElement;
+type Ref = HTMLButtonElement;
 
 interface HeaderLinkOptions {
   active?: boolean;
 }
 
 export type HeaderLinkProps = React.DetailedHTMLProps<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  HTMLAnchorElement
+  React.ButtonHTMLAttributes<HTMLElement>,
+  HTMLButtonElement
 > &
   HeaderLinkOptions;
 
@@ -25,9 +25,9 @@ const HeaderLink = forwardRef<Ref, HeaderLinkProps>((props, ref) => {
   );
 
   return (
-    <a ref={ref} className={merged} {...rest}>
+    <button ref={ref} className={merged} {...rest}>
       {children}
-    </a>
+    </button>
   );
 });
 
