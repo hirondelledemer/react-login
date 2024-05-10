@@ -6,9 +6,9 @@ import { ProtectedRoutes } from './ProtectedRoutes';
 import Servers from '@src/pages/Severs';
 import { HOME, LOGIN, SERVERS } from '@src/utils/consts/routes';
 import '../index.css';
+import NotFound from '@src/pages/NotFound';
 
 const Application: React.FC = () => (
-  // todo: add error page
   <BrowserRouter>
     <Routes>
       <Route path={HOME} element={<Home />} />
@@ -16,7 +16,7 @@ const Application: React.FC = () => (
       <Route element={<ProtectedRoutes />}>
         <Route path={SERVERS} element={<Servers />} />
       </Route>
-      <Route path='*' element={<div>page not found</div>} />
+      <Route path='*' element={<NotFound />} />
     </Routes>
   </BrowserRouter>
 );
