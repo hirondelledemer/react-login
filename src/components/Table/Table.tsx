@@ -40,40 +40,32 @@ const Table = <T,>({ data, columns }: TableProps<T>) => {
     );
   });
 
-  const rows = !items?.length ? (
-    <tr>
-      <td colSpan={columns.length} className='text-center'>
-        No data //todo: show empty state
-      </td>
-    </tr>
-  ) : (
-    items?.map((row, index) => {
-      return (
-        <tr key={`tr-${index}`}>
-          {columns.map((column, index2) => {
-            const value = column.render
-              ? column.render(column, row as T)
-              : (row[column.key as keyof typeof row] as string);
+  const rows = items?.map((row, index) => {
+    return (
+      <tr key={`tr-${index}`}>
+        {columns.map((column, index2) => {
+          const value = column.render
+            ? column.render(column, row as T)
+            : (row[column.key as keyof typeof row] as string);
 
-            return (
-              <td
-                key={`td-${index2}`}
-                className='px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap'
-              >
-                <div className='inline-flex items-center gap-x-3'>
-                  <div className='flex items-center gap-x-2'>
-                    <div className='font-medium text-gray-800 dark:text-white '>
-                      {value}
-                    </div>
+          return (
+            <td
+              key={`td-${index2}`}
+              className='px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap'
+            >
+              <div className='inline-flex items-center gap-x-3'>
+                <div className='flex items-center gap-x-2'>
+                  <div className='font-medium text-gray-800 dark:text-white '>
+                    {value}
                   </div>
                 </div>
-              </td>
-            );
-          })}
-        </tr>
-      );
-    })
-  );
+              </div>
+            </td>
+          );
+        })}
+      </tr>
+    );
+  });
 
   //todo: check mobile view
   return (
