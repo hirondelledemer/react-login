@@ -7,13 +7,15 @@
     "serve": "cross-env NODE_ENV=production webpack --config tools/webpack/webpack.config.prod.js && cross-env serve dist/",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
     "test": "jest --env=jsdom",
-    "test:watch": "jest --env=jsdom --watch"
+    "test:watch": "jest --env=jsdom --watch",
+    "test:e2e": "npx playwright test"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "@playwright/test": "^1.44.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.8",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
