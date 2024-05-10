@@ -18,9 +18,6 @@ module.exports = {
     },
   },
   stats: 'errors-warnings',
-  devServer: {
-    historyApiFallback: true,
-  },
   optimization: {
     minimize: true,
     sideEffects: true,
