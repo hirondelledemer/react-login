@@ -39,7 +39,9 @@ const getDriver = ({ page }: { page: Page }) => {
   const passwordInput = page.getByPlaceholder('password');
   const serversTitle = page.getByText('servers');
   const error = page.getByText('Username or password is not valid');
-  const loginButton = page.getByRole('button', { name: 'Login' });
+  const loginButton = page
+    .locator('form')
+    .getByRole('button', { name: 'Login' });
 
   return {
     fillUsername: (username: string) => usernameInput.fill(username),

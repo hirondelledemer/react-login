@@ -6,14 +6,45 @@ import PasswordIcon from '../icons/Password';
 import Button from '../Button';
 import Tooltip from '../Tooltip';
 
+enum FormFields {
+  USERNAME = 'username',
+  PASSWORD = 'password',
+}
+
+type FormValues = {
+  [key in FormFields]: string;
+};
+type FormErrors = {
+  [key in FormFields]?: string;
+};
+
 const Login: React.FC = () => {
   const [login, isLoading, serverError] = useLogin();
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [values, setValues] = useState<FormValues>({
+    [FormFields.USERNAME]: '',
+    [FormFields.PASSWORD]: '',
+  });
+
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const handleSumit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const { username, password } = values;
+    if (!username || !password) {
+      setErrors({
+        [FormFields.USERNAME]: !username ? 'Username required' : undefined,
+        [FormFields.PASSWORD]: !password ? 'Password required' : undefined,
+      });
+      return;
+    }
     login({ username, password });
+  };
+
+  const handleFieldOnChange = (field: FormFields, value: string) => {
+    setValues((val) => ({
+      ...val,
+      [field]: value,
+    }));
   };
 
   return (
@@ -38,35 +69,30 @@ const Login: React.FC = () => {
 
           <div className='mt-8 lg:w-1/2 lg:mt-0'>
             <form className='w-full lg:max-w-xl' onSubmit={handleSumit}>
-              <div className='relative flex items-center'>
-                <span className='absolute'>
-                  <UserIcon />
-                </span>
+              <Input
+                name={FormFields.USERNAME}
+                placeholder='Username'
+                aria-label='username'
+                value={values.username}
+                icon={<UserIcon />}
+                onChange={(e) =>
+                  handleFieldOnChange(FormFields.USERNAME, e.target.value)
+                }
+                errorMessage={errors[FormFields.USERNAME]}
+              />
 
-                <Input
-                  name='username'
-                  placeholder='Username'
-                  aria-label='username'
-                  value={username}
-                  required
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-
-              <div className='relative flex items-center mt-4'>
-                <span className='absolute'>
-                  <PasswordIcon />
-                </span>
-
-                <Input
-                  type='password'
-                  placeholder='Password'
-                  aria-label='password'
-                  value={password}
-                  required
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
+              <Input
+                type='password'
+                placeholder='Password'
+                aria-label={FormFields.PASSWORD}
+                value={values.password}
+                className='mt-4'
+                icon={<PasswordIcon />}
+                errorMessage={errors[FormFields.PASSWORD]}
+                onChange={(e) =>
+                  handleFieldOnChange(FormFields.PASSWORD, e.target.value)
+                }
+              />
 
               <div className='mt-8 md:flex md:items-center'>
                 <Button type='submit' disabled={isLoading}>

@@ -60,8 +60,21 @@ describe('Login', () => {
 
   describe('errors', () => {
     describe('inputs are empty', () => {
-      it('should show "please fill username and password" error', () => {
-        // todo: think the best way to handle this
+      it('should show "required" error', () => {
+        jest
+          .spyOn(loginHooks, 'useLogin')
+          .mockImplementation(() => [jest.fn(), false, undefined]);
+
+        render(<LoginForm />);
+
+        const loginButton = screen.getByRole('button');
+        fireEvent.click(loginButton);
+
+        const usernameError = screen.getByText('Username required');
+        const passwordError = screen.getByText('Password required');
+
+        expect(usernameError).toBeInTheDocument();
+        expect(passwordError).toBeInTheDocument();
       });
     });
 
