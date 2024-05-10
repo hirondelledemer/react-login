@@ -23,7 +23,7 @@ const ServersList: React.FC = () => {
   ];
 
   return (
-    <section className='bg-white px-40 dark:bg-gray-900 min-h-screen min-w-screen py-10'>
+    <section className='bg-white px-10 md:px-40 dark:bg-gray-900 min-h-screen min-w-screen py-10'>
       <div className='flex items-center gap-x-3'>
         <h2 className='text-lg font-medium text-gray-800 dark:text-white'>
           Severs
