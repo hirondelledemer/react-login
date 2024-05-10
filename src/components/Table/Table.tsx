@@ -2,7 +2,7 @@ import React from 'react';
 import { useSortableData } from '@src/hooks/use-sortable-data';
 import SortButton from '../SortButton';
 import usePagination from '@src/hooks/use-pagination';
-import Button, { Variant } from '../Button';
+import Pagination from './Pagination';
 
 export interface ColumnProps<T> {
   key: keyof T;
@@ -94,38 +94,13 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
           </div>
         </div>
       </div>
-
-      <div className='flex items-center justify-between mt-6'>
-        <Button
-          onClick={gotToPreviousPage}
-          variant={Variant.secondary}
-          className={pageNumber === 0 ? 'invisible' : ''}
-        >
-          Prevous
-        </Button>
-        <div className='items-center hidden md:flex gap-x-3'>
-          {[...Array(pageCount)].map((_item, index) => (
-            <Button
-              key={index}
-              onClick={() => changePage(index)}
-              variant={
-                pageNumber === index
-                  ? Variant.secondaryActive
-                  : Variant.secondary
-              }
-            >
-              {index + 1}
-            </Button>
-          ))}
-        </div>
-        <Button
-          variant={Variant.secondary}
-          onClick={goToNextPage}
-          className={pageNumber === pageCount - 1 ? 'invisible' : ''}
-        >
-          Next
-        </Button>
-      </div>
+      <Pagination
+        gotToPreviousPage={gotToPreviousPage}
+        activePageNumber={pageNumber}
+        pageCount={pageCount}
+        changePage={changePage}
+        goToNextPage={goToNextPage}
+      />
     </>
   );
 };
