@@ -16,7 +16,6 @@ interface TableProps<T> {
   pageSize: number;
 }
 
-//todo: test
 const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
   const { items, requestSort, sortConfig } = useSortableData<T>(data, null);
   const {
