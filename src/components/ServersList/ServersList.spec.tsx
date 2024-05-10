@@ -24,7 +24,6 @@ describe('ServersList', () => {
   describe('sorting', () => {
     it('should sort by name', () => {
       jest.spyOn(useServersHook, 'useServersList').mockImplementation(
-        // todo: look into reseting
         () =>
           ({
             data: serversData,

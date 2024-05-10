@@ -1,9 +1,6 @@
+import { SortDirection } from '@src/utils/types/sorting';
 import { useMemo, useState } from 'react';
 
-enum SortDirection {
-  asc = 'asc',
-  desc = 'desc',
-}
 interface SortConfig {
   key: string;
   direction: SortDirection;

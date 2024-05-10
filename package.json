@@ -71,6 +71,7 @@
     },
     "modulePathIgnorePatterns": [
       "<rootDir>/tests/"
-    ]
+    ],
+    "clearMocks": true
   }
 }
