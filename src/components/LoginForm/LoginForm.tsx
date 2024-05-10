@@ -52,12 +52,7 @@ const Login: React.FC = () => {
       <div className='container px-6 py-24 mx-auto lg:py-32 min-h-80'>
         <div className='lg:flex'>
           <div className='lg:w-1/2'>
-            <img
-              className='w-auto h-7 sm:h-8'
-              src='https://merakiui.com/images/logo.svg'
-              alt=''
-            />
-
+            <img className='w-auto h-10 xl:h-14' src='./logo.png' alt='' />
             <h1 className='mt-4 text-gray-600 dark:text-gray-300 md:text-lg'>
               Welcome
             </h1>
