@@ -1,8 +1,9 @@
-import { Server, useServersList } from '@src/hooks/use-servers';
+import { useServersList } from '@src/hooks/use-servers';
 import React from 'react';
 import Table from '../Table';
 import { ColumnProps } from '../Table/Table';
 import Skeleton from '../Skeleton';
+import { Server } from '@src/utils/types/servers';
 
 const ServersList: React.FC = () => {
   const { data, isLoading, error } = useServersList();

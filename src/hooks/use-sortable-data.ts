@@ -1,18 +1,15 @@
+import { SortDirection } from '@src/utils/types/sorting';
 import { useMemo, useState } from 'react';
 
-enum SortDirection {
-  asc = 'asc',
-  desc = 'desc',
-}
-interface SortConfig {
-  key: string;
+interface SortConfig<T> {
+  key: keyof T;
   direction: SortDirection;
 }
 
 // TODO: add search
-export const useSortableData = <T extends { [key: string]: string }>(
+export const useSortableData = <T extends { [K in keyof T]: T[K] }>(
   items: T[],
-  config: SortConfig | null,
+  config: SortConfig<T> | null,
 ) => {
   const [sortConfig, setSortConfig] = useState(config);
 
@@ -32,7 +29,7 @@ export const useSortableData = <T extends { [key: string]: string }>(
     return sortableItems;
   }, [items, sortConfig]);
 
-  const requestSort = (key: string) => {
+  const requestSort = (key: keyof T) => {
     let direction = SortDirection.asc;
     if (
       sortConfig &&

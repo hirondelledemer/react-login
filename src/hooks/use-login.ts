@@ -12,6 +12,7 @@ export const useLogin = (): [(input: InputProps) => void, boolean, Error] => {
   const { setToken } = useAuth();
   const navigate = useNavigate();
   const { mutate, isPending, error } = useMutation({
+    // todo: extract
     mutationFn: async (params: InputProps) => {
       const url = 'https://playground.tesonet.lt/v1/tokens';
 

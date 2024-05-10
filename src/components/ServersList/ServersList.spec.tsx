@@ -5,6 +5,7 @@ import * as useServersHook from '@src/hooks/use-servers';
 import { UseQueryResult } from '@tanstack/react-query';
 import { serversData } from './ServersList.mocks';
 import { sortDownTestId, sortUpTestId } from '../SortButton/SortButton';
+import { Server } from '@src/utils/types/servers';
 
 describe('ServersList', () => {
   it('should show servers', () => {
@@ -14,7 +15,7 @@ describe('ServersList', () => {
           data: serversData,
           isLoading: false,
           error: undefined,
-        } as UseQueryResult<useServersHook.Server[], Error>),
+        } as UseQueryResult<Server[], Error>),
     );
     render(<ServersList />);
     const rows = document.querySelectorAll('tr');
@@ -24,13 +25,12 @@ describe('ServersList', () => {
   describe('sorting', () => {
     it('should sort by name', () => {
       jest.spyOn(useServersHook, 'useServersList').mockImplementation(
-        // todo: look into reseting
         () =>
           ({
             data: serversData,
             isLoading: false,
             error: undefined,
-          } as UseQueryResult<useServersHook.Server[], Error>),
+          } as UseQueryResult<Server[], Error>),
       );
       render(<ServersList />);
       const rows = document.querySelectorAll('tr');
@@ -58,13 +58,12 @@ describe('ServersList', () => {
 
     it('should sort by distance', () => {
       jest.spyOn(useServersHook, 'useServersList').mockImplementation(
-        // todo: look into reseting
         () =>
           ({
             data: serversData,
             isLoading: false,
             error: undefined,
-          } as UseQueryResult<useServersHook.Server[], Error>),
+          } as UseQueryResult<Server[], Error>),
       );
       render(<ServersList />);
       const rows = document.querySelectorAll('tr');
