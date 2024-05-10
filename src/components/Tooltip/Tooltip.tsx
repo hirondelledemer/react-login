@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 
-const Tooltip = ({ content, children }: any) => {
-  //todo: types
+const Tooltip = ({
+  content,
+  children,
+}: {
+  content: ReactNode;
+  children: ReactNode;
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div className='relative inline-block'>
