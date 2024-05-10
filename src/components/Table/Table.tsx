@@ -1,8 +1,8 @@
 import React from 'react';
-import ArrowLeft from '../icons/ArrowLeft';
-import ArrowRight from '../icons/ArrowRight';
 import { useSortableData } from '@src/hooks/use-sortable-data';
 import SortButton from '../SortButton';
+import usePagination from '@src/hooks/use-pagination';
+import Button, { Variant } from '../Button';
 
 export interface ColumnProps<T> {
   key: keyof T;
@@ -13,11 +13,20 @@ export interface ColumnProps<T> {
 interface TableProps<T> {
   columns: Array<ColumnProps<T>>;
   data?: T[];
+  pageSize: number;
 }
 
 //todo: test
-const Table = <T,>({ data, columns }: TableProps<T>) => {
+const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
   const { items, requestSort, sortConfig } = useSortableData<T>(data, null);
+  const {
+    pageNumber,
+    changePage,
+    getPageData,
+    goToNextPage,
+    gotToPreviousPage,
+    pageCount,
+  } = usePagination<T>(items, pageSize);
 
   const headers = columns.map((column, index) => {
     return (
@@ -40,7 +49,7 @@ const Table = <T,>({ data, columns }: TableProps<T>) => {
     );
   });
 
-  const rows = items?.map((row, index) => {
+  const rows = getPageData()?.map((row, index) => {
     return (
       <tr key={`tr-${index}`}>
         {columns.map((column, index2) => {
@@ -67,8 +76,6 @@ const Table = <T,>({ data, columns }: TableProps<T>) => {
     );
   });
 
-  //todo: check mobile view
-  //todo: check pagination
   return (
     <>
       <div className='flex flex-col mt-6'>
@@ -89,66 +96,35 @@ const Table = <T,>({ data, columns }: TableProps<T>) => {
       </div>
 
       <div className='flex items-center justify-between mt-6'>
-        <a
-          href='#'
-          className='flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800'
+        <Button
+          onClick={gotToPreviousPage}
+          variant={Variant.secondary}
+          className={pageNumber === 0 ? 'invisible' : ''}
         >
-          <ArrowLeft />
-          <span>previous</span>
-        </a>
-
-        <div className='items-center hidden lg:flex gap-x-3'>
-          <a
-            href='#'
-            className='px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60'
-          >
-            1
-          </a>
-          <a
-            href='#'
-            className='px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100'
-          >
-            2
-          </a>
-          <a
-            href='#'
-            className='px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100'
-          >
-            3
-          </a>
-          <a
-            href='#'
-            className='px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100'
-          >
-            ...
-          </a>
-          <a
-            href='#'
-            className='px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100'
-          >
-            12
-          </a>
-          <a
-            href='#'
-            className='px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100'
-          >
-            13
-          </a>
-          <a
-            href='#'
-            className='px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100'
-          >
-            14
-          </a>
+          Prevous
+        </Button>
+        <div className='items-center hidden md:flex gap-x-3'>
+          {[...Array(pageCount)].map((_item, index) => (
+            <Button
+              key={index}
+              onClick={() => changePage(index)}
+              variant={
+                pageNumber === index
+                  ? Variant.secondaryActive
+                  : Variant.secondary
+              }
+            >
+              {index + 1}
+            </Button>
+          ))}
         </div>
-
-        <a
-          href='#'
-          className='flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800'
+        <Button
+          variant={Variant.secondary}
+          onClick={goToNextPage}
+          className={pageNumber === pageCount - 1 ? 'invisible' : ''}
         >
-          <span>Next</span>
-          <ArrowRight />
-        </a>
+          Next
+        </Button>
       </div>
     </>
   );
