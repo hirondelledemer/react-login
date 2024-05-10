@@ -3,8 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useLocalStorage } from './use-local-storage';
 import { Server } from '@src/utils/types/servers';
 
-export const fetchServersList = async (token: string) => {
-  const res = await fetch('https://playground.tesonet.lt/v1/servers', {
+const fetchServersList = async (token: string) => {
+  const url = 'https://playground.tesonet.lt/v1/servers';
+  const res = await fetch(url, {
     headers: {
       Accept: 'application/json',
       Authorization: `Bearer ${token}`,

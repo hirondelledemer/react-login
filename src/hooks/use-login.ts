@@ -8,29 +8,29 @@ interface InputProps {
   password: string;
 }
 
+const fetchLogin = async (params: InputProps) => {
+  const url = 'https://playground.tesonet.lt/v1/tokens';
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  });
+
+  if (!res.ok) {
+    throw new Error('Username or password is not valid');
+  }
+
+  return await res.json();
+};
+
 export const useLogin = (): [(input: InputProps) => void, boolean, Error] => {
   const { setToken } = useAuth();
   const navigate = useNavigate();
   const { mutate, isPending, error } = useMutation({
-    // todo: extract
-    mutationFn: async (params: InputProps) => {
-      const url = 'https://playground.tesonet.lt/v1/tokens';
-
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(params),
-      });
-
-      if (!res.ok) {
-        throw new Error('Username or password is not valid');
-      }
-
-      return await res.json();
-    },
+    mutationFn: fetchLogin,
     onSuccess: async (data) => {
       setToken(data.token);
       navigate(SERVERS);
