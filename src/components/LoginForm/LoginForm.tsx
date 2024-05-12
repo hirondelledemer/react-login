@@ -85,7 +85,7 @@ const LoginForm: React.FC = () => {
             </>
           }
         >
-          <a className='inline-block mt-4 text-center text-blue-500 md:mt-0 md:mx-6 hover:underline dark:text-blue-400'>
+          <a className='inline-block mt-4 text-center text-blue-500 md:mt-0 mx-6 hover:underline dark:text-blue-400'>
             Forgot your password?
           </a>
         </Tooltip>
