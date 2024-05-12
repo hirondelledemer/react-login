@@ -42,11 +42,10 @@ describe('ServersList', () => {
       expect(rows[6].textContent).toBe('Server 612');
       expect(rows[7].textContent).toBe('Server 75');
 
-      const sortNameButtonAsc = screen.getAllByTestId(sortUpTestId)[0];
-      fireEvent.click(sortNameButtonAsc);
-
       const sortNameButtonDesc = screen.getAllByTestId(sortDownTestId)[0];
       fireEvent.click(sortNameButtonDesc);
+      fireEvent.click(sortNameButtonDesc);
+
       expect(rows[1].textContent).toBe('Server 75');
       expect(rows[2].textContent).toBe('Server 612');
       expect(rows[3].textContent).toBe('Server 52');
@@ -68,8 +67,8 @@ describe('ServersList', () => {
       render(<ServersList />);
       const rows = document.querySelectorAll('tr');
 
-      const sortDistanceButtonAsc = screen.getAllByTestId(sortUpTestId)[1];
-      fireEvent.click(sortDistanceButtonAsc);
+      const sortDistanceButtonDesc = screen.getAllByTestId(sortDownTestId)[1];
+      fireEvent.click(sortDistanceButtonDesc);
       expect(rows[1].textContent).toBe('Server 52');
       expect(rows[2].textContent).toBe('Server 15');
       expect(rows[3].textContent).toBe('Server 75');
@@ -78,8 +77,8 @@ describe('ServersList', () => {
       expect(rows[6].textContent).toBe('Server 210');
       expect(rows[7].textContent).toBe('Server 612');
 
-      const sortDistanceButtonDesc = screen.getAllByTestId(sortDownTestId)[1];
       fireEvent.click(sortDistanceButtonDesc);
+
       expect(rows[1].textContent).toBe('Server 612');
       expect(rows[2].textContent).toBe('Server 210');
       expect(rows[3].textContent).toBe('Server 47');

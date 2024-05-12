@@ -20,11 +20,9 @@ describe('Table', () => {
       render(<Table pageSize={10} columns={columns} data={miniData} />);
 
       const rows = document.querySelectorAll('tr');
-      const sortNameButtonAsc = screen.getAllByTestId(sortUpTestId)[0];
-
-      fireEvent.click(sortNameButtonAsc);
-
       const sortNameButtonDesc = screen.getAllByTestId(sortDownTestId)[0];
+
+      fireEvent.click(sortNameButtonDesc);
       fireEvent.click(sortNameButtonDesc);
 
       expect(rows[1].textContent).toBe('data 3data 4');
@@ -33,7 +31,7 @@ describe('Table', () => {
   });
 
   describe('pagination', () => {
-    it.only('should show data divided per pages', () => {
+    it('should show data divided per pages', () => {
       render(<Table pageSize={5} columns={columns} data={extendedData} />);
 
       const rows = document.querySelectorAll('tr');
