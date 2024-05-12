@@ -5,6 +5,7 @@ import Input from '../Input';
 import PasswordIcon from '../icons/Password';
 import Button from '../Button';
 import Tooltip from '../Tooltip';
+import Link from '../Link';
 
 enum FormFields {
   USERNAME = 'username',
@@ -83,10 +84,7 @@ const LoginForm: React.FC = () => {
             </>
           }
         >
-          {/* todo: extract link */}
-          <a className='inline-block mt-4 text-center text-blue-500 md:mt-0 mx-6 hover:underline'>
-            Forgot your password?
-          </a>
+          <Link>Forgot your password?</Link>
         </Tooltip>
       </div>
       {/* todo: extract error text */}
@@ -97,4 +95,5 @@ const LoginForm: React.FC = () => {
   );
 };
 
+LoginForm.displayName = 'LoginForm';
 export default LoginForm;
