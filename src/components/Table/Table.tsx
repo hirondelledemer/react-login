@@ -29,11 +29,8 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
 
   const headers = columns.map((column, index) => {
     return (
-      <th
-        key={`th-${index}`}
-        scope='col'
-        className='px-4 xl:px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400'
-      >
+      <th key={`th-${index}`} scope='col' className='px-4 xl:px-12 py-3.5'>
+        {/* todo: extracy button */}
         <button
           className='flex items-center gap-x-2'
           onClick={() => requestSort(column.key)}
@@ -41,7 +38,11 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
           <span>{column.title}</span>
           <SortButton
             active={sortConfig && sortConfig.key === column.key}
-            direction={sortConfig && sortConfig.direction}
+            direction={
+              sortConfig && sortConfig.key === column.key
+                ? sortConfig && sortConfig.direction
+                : undefined
+            }
           />
         </button>
       </th>
@@ -59,15 +60,9 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
           return (
             <td
               key={`td-${index2}`}
-              className='px-4 xl:px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap'
+              className='px-4 xl:px-12 py-4 text-sm whitespace-nowrap'
             >
-              <div className='inline-flex items-center gap-x-3'>
-                <div className='flex items-center gap-x-2'>
-                  <div className='font-medium text-gray-800 dark:text-white '>
-                    {value}
-                  </div>
-                </div>
-              </div>
+              {value}
             </td>
           );
         })}
@@ -80,12 +75,12 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
       <div className='flex flex-col mt-6'>
         <div className='-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
-            <div className='overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg'>
-              <table className='min-w-full divide-y divide-gray-200 dark:divide-gray-700'>
-                <thead className='bg-gray-50 dark:bg-gray-800'>
+            <div className='overflow-hidden border border-gray-200 md:rounded-lg'>
+              <table className='min-w-full divide-y'>
+                <thead>
                   <tr>{headers}</tr>
                 </thead>
-                <tbody className='bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900'>
+                <tbody className='bg-white divide-y divide-gray-200'>
                   {rows}
                 </tbody>
               </table>

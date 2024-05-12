@@ -4,7 +4,7 @@ export default function UserIcon() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      className='w-6 h-6 mx-3 text-gray-300 dark:text-gray-500'
+      className='w-6 h-6 mx-3 text-gray-300'
       fill='none'
       viewBox='0 0 24 24'
       stroke='currentColor'

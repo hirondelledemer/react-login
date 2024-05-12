@@ -17,11 +17,11 @@ const Tooltip = ({
         {children}
       </div>
       {isHovered && (
-        <p className='absolute flex items-center justify-center w-48 p-3 text-gray-600 -translate-x-1/2 bg-white rounded-lg shadow-lg -top-20 left-1/2 dark:shadow-none shadow-gray-200 dark:bg-gray-800 dark:text-white'>
+        <p className='absolute flex items-center justify-center w-48 p-3 text-gray-600 -translate-x-1/2 bg-white rounded-lg shadow-lg -top-20 left-1/2 shadow-gray-200'>
           <span className='truncate'>{content}</span>
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            className='w-6 h-6 absolute rotate-45 -translate-x-1/2 left-1/2 bottom-0.5 -mb-3 transform text-white dark:text-gray-800 fill-current'
+            className='w-6 h-6 absolute rotate-45 -translate-x-1/2 left-1/2 bottom-0.5 -mb-3 transform text-white fill-current'
             stroke='currentColor'
             viewBox='0 0 24 24'
           >

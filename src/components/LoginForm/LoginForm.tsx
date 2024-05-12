@@ -60,7 +60,6 @@ const LoginForm: React.FC = () => {
         }
         errorMessage={errors[FormFields.USERNAME]}
       />
-
       <Input
         type='password'
         placeholder='Password'
@@ -73,7 +72,6 @@ const LoginForm: React.FC = () => {
           handleFieldOnChange(FormFields.PASSWORD, e.target.value)
         }
       />
-
       <div className='mt-8 md:flex md:items-center'>
         <Button type='submit' disabled={isLoading}>
           Login
@@ -85,11 +83,13 @@ const LoginForm: React.FC = () => {
             </>
           }
         >
-          <a className='inline-block mt-4 text-center text-blue-500 md:mt-0 mx-6 hover:underline dark:text-blue-400'>
+          {/* todo: extract link */}
+          <a className='inline-block mt-4 text-center text-blue-500 md:mt-0 mx-6 hover:underline'>
             Forgot your password?
           </a>
         </Tooltip>
       </div>
+      {/* todo: extract error text */}
       {serverError && (
         <div className='text-red-500 mt-4'>{serverError.message}</div>
       )}
