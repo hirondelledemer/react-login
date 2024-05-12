@@ -1,5 +1,6 @@
 import React, { forwardRef, ReactNode } from 'react';
 import clsx from 'clsx';
+import Text, { Variant, Size } from '../Text';
 
 type Ref = HTMLInputElement;
 
@@ -28,7 +29,9 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
         <span className='absolute mt-3'>{icon}</span>
         <input ref={ref} className={merged} {...rest} />
         {errorMessage && (
-          <p className='mt-3 text-xs text-red-400'>{errorMessage}</p>
+          <Text variant={Variant.error} size={Size.small} className='mt-3'>
+            {errorMessage}
+          </Text>
         )}
       </div>
     </div>

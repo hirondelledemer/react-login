@@ -6,6 +6,7 @@ import PasswordIcon from '../icons/Password';
 import Button from '../Button';
 import Tooltip from '../Tooltip';
 import Link from '../Link';
+import Text, { Variant } from '../Text';
 
 enum FormFields {
   USERNAME = 'username',
@@ -38,6 +39,7 @@ const LoginForm: React.FC = () => {
       });
       return;
     }
+    setErrors({});
     login({ username, password });
   };
 
@@ -87,9 +89,10 @@ const LoginForm: React.FC = () => {
           <Link>Forgot your password?</Link>
         </Tooltip>
       </div>
-      {/* todo: extract error text */}
       {serverError && (
-        <div className='text-red-500 mt-4'>{serverError.message}</div>
+        <Text className='mt-4' variant={Variant.error}>
+          {serverError.message}
+        </Text>
       )}
     </form>
   );
