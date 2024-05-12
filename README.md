@@ -9,8 +9,8 @@ React Login Page example
 Demo can be found [here](https://react-login-seven-virid.vercel.app/)
 
 Example screens:
-<img src="tests/login.spec.ts-snapshots/login-page-webkit-darwin.png" />
-<img src="tests/servers.spec.ts-snapshots/servers-page-webkit-darwin.png" />
+<img src="assets/images/login-page.png" />
+<img src="assets/images/servers-page.png" />
 
 <br>
 
