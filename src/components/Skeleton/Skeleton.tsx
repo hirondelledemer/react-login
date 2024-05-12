@@ -1,6 +1,6 @@
 import React from 'react';
 
-// todo: replace by loader
+// todo: replace by nicer looking loader
 const Skeleton: React.FC = () => {
   return (
     <div className='w-full max-w-md mx-auto animate-pulse p-9'>
