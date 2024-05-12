@@ -7,9 +7,10 @@ React Login Page example
 ## Demo
 
 Demo can be found [here](https://react-login-seven-virid.vercel.app/)
-//todo: add screenshots
 
-<!-- <img src="assets/images/screenshot.png" /> -->
+Example screens:
+<img src="tests/login.spec.ts-snapshots/login-page-webkit-darwin.png" />
+<img src="tests/servers.spec.ts-snapshots/servers-page-webkit-darwin.png" />
 
 <br>
 
@@ -36,7 +37,6 @@ Clone the repository :
 
 ```
 git clone git@github.com:hirondelledemer/react-login.git
-
 ```
 
 <br>
@@ -45,7 +45,6 @@ Install dependencies:
 
 ```
 yarn install
-
 ```
 
 <br />

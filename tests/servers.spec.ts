@@ -1,14 +1,17 @@
 import { test, expect } from '@playwright/test';
+import { mockData } from './login.mocks';
 import { getDriver } from './driver';
 
-test.describe('Login', () => {
-  test.describe('happy path', () => {
-    test('user logs in', async ({ page }) => {
+test.describe('Servers', () => {
+  test.describe('user logged in', () => {
+    test('user should see servers when logged in', async ({ page }) => {
+      await page.route('*/**/v1/servers', async (route) => {
+        await route.fulfill({ json: mockData });
+      });
+
       const { vals, urls, serversTitle, ...driver } = getDriver({ page });
 
       await driver.goto(urls.login);
-
-      await expect(page).toHaveScreenshot('login-page.png');
 
       await driver.fillUsername(vals.username);
       await driver.fillPassword(vals.password);
@@ -16,21 +19,16 @@ test.describe('Login', () => {
 
       await expect(page).toHaveURL(urls.servers);
       await expect(serversTitle).toBeVisible();
+      await expect(page).toHaveScreenshot('servers-page.png');
     });
   });
 
-  test.describe('errors', () => {
+  test.describe('user is not logged in', () => {
     test('password is incorrect', async ({ page }) => {
       const { vals, urls, error, ...driver } = getDriver({ page });
-      await driver.goto(urls.login);
+      await driver.goto(urls.servers);
 
-      await driver.fillUsername(vals.username);
-      await driver.fillPassword('incorrect');
-      await driver.clickLogin();
-
-      await expect(error).toBeVisible();
       await expect(page).toHaveURL(urls.login);
-      await expect(page).toHaveScreenshot('login-error-bad-password.png');
     });
   });
 });
