@@ -18,15 +18,23 @@ export type ButtonProps = React.DetailedHTMLProps<
 > &
   ButtonOptions;
 
+const classes = {
+  main: 'px-6 py-2 rounded-lg',
+  primary: 'font-medium tracking-wide text-white bg-blue-600 hover:bg-blue-500',
+  secondary: 'text-gray-500 hover:bg-gray-100',
+  secondaryActive: 'text-blue-500 bg-blue-100/60',
+};
+
 const Button = forwardRef<Ref, ButtonProps>((props, ref) => {
   const { className, children, variant = 'primary', ...rest } = props;
 
   const merged = clsx(
-    'px-6 py-2 rounded-lg',
-    variant === Variant.primary &&
-      'font-medium tracking-wide text-white bg-blue-600 hover:bg-blue-500',
-    variant === Variant.secondary && 'text-gray-500 hover:bg-gray-100',
-    variant === Variant.secondaryActive && 'text-blue-500 bg-blue-100/60',
+    {
+      [classes.main]: true,
+      [classes.primary]: variant === Variant.primary,
+      [classes.secondary]: variant === Variant.secondary,
+      [classes.secondaryActive]: variant === Variant.secondaryActive,
+    },
     className,
   );
 
