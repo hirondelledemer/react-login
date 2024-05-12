@@ -32,7 +32,7 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
       <th
         key={`th-${index}`}
         scope='col'
-        className='px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400'
+        className='px-4 xl:px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400'
       >
         <button
           className='flex items-center gap-x-2'
@@ -59,7 +59,7 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
           return (
             <td
               key={`td-${index2}`}
-              className='px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap'
+              className='px-4 xl:px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap'
             >
               <div className='inline-flex items-center gap-x-3'>
                 <div className='flex items-center gap-x-2'>

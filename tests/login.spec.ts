@@ -1,8 +1,13 @@
 import { test, expect, Page } from '@playwright/test';
+import { mockData } from './login.mocks';
 
 test.describe('Login', () => {
   test.describe('happy path', () => {
     test('user logs in', async ({ page }) => {
+      await page.route('*/**/v1/servers', async (route) => {
+        await route.fulfill({ json: mockData });
+      });
+
       const { vals, urls, serversTitle, ...driver } = getDriver({ page });
 
       await driver.goto(urls.login);
@@ -14,6 +19,7 @@ test.describe('Login', () => {
       await driver.clickLogin();
 
       await expect(page).toHaveURL(urls.servers);
+      await expect(page).toHaveScreenshot('servers-page.png');
       await expect(serversTitle).toBeVisible();
     });
   });
