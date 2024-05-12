@@ -4,7 +4,7 @@ import ServersList from './ServersList';
 import * as useServersHook from '@src/hooks/use-servers';
 import { UseQueryResult } from '@tanstack/react-query';
 import { serversData } from './ServersList.mocks';
-import { sortDownTestId, sortUpTestId } from '../SortButton/SortButton';
+import { sortDownTestId } from '../SortButton/SortButton';
 import { Server } from '@src/utils/types/servers';
 
 describe('ServersList', () => {

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Table from './Table';
-import { sortDownTestId, sortUpTestId } from '../SortButton/SortButton';
+import { sortDownTestId } from '../SortButton/SortButton';
 import { columns, extendedData, miniData } from './Table.mocks';
 
 describe('Table', () => {
