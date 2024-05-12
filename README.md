@@ -105,13 +105,29 @@ yarn serve
 
 ## TODOs
 
+### Product improvements
+
 - Unify heading styles
-- Create generic button that would allow create custom buttons (currently one is needed in table component)
-- Upload playwright-report folder with Azure Pipelines (this would alllow see failing tests more clearly)
-- add storybook for generic components (this would allow nicer preview for components such as button, link, table, etc.)
-- Improve suggestion tooltip
-- Implement table search
 - Introduce dark mode
+- Improve suggestion tooltip
+
+since for demo purposes there is only one user, there might be a button "fill user data" which would fill login form
+
+- Implement table search
+
+additional field above the table where user could search servers by name
+
+- More exiting home page :)
+- Use translation manager to make app bilingual
+
+### Code improvements
+
+- Create generic button that would allow create custom buttons (currently one is needed in table component, but in future more might be needed)
+- Add storybook for generic components (this would allow nicer preview and testing for components such as button, link, table, etc.)
+
+### Dev experience improvements
+
+- Upload playwright-report folder with Azure Pipelines (this would allow see failing tests more clearly)
 - Show Deployment link on PR's
 
 <br />
