@@ -4,8 +4,9 @@ React Login Page example
 
 <br>
 
-## Screenshot
+## Demo
 
+Demo can be found [here](https://react-login-seven-virid.vercel.app/)
 //todo: add screenshots
 
 <!-- <img src="assets/images/screenshot.png" /> -->
@@ -17,7 +18,7 @@ React Login Page example
 - React
 - TypeScript
 - ESLint
-- Webpack & Configuration
+- Webpack
 - React Fast Refresh + Webpack HMR
 - Tailwind css
 - Jest
@@ -51,7 +52,7 @@ yarn install
 
 ## Start : Development
 
-To develop and run your web application, you need to run following command :
+To develop and run application, you need to run following command :
 
 ```
 yarn start
@@ -96,16 +97,6 @@ yarn build
 ## Serve : Production
 
 This command serves build files from `dist/` directory.
-
-```
-yarn serve
-```
-
-<br />
-
-## Demo
-
-Demo can be found [here](https://react-login-seven-virid.vercel.app/)
 
 ```
 yarn serve
