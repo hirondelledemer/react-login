@@ -25,4 +25,5 @@ const LoginSection: React.FC = () => {
   );
 };
 
+LoginSection.displayName = 'LoginSection';
 export default LoginSection;

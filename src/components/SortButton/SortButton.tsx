@@ -24,4 +24,5 @@ const SortButton: React.FC<SortButtonProps> = ({
   );
 };
 
+SortButton.displayName = 'SortButton';
 export default SortButton;

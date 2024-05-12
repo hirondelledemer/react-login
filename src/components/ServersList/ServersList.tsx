@@ -36,4 +36,5 @@ const ServersList: React.FC = () => {
   );
 };
 
+ServersList.displayName = 'ServersList';
 export default ServersList;

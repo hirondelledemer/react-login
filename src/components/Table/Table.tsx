@@ -30,7 +30,6 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
   const headers = columns.map((column, index) => {
     return (
       <th key={`th-${index}`} scope='col' className='px-4 xl:px-12 py-3.5'>
-        {/* todo: extracy button */}
         <button
           className='flex items-center gap-x-2'
           onClick={() => requestSort(column.key)}
@@ -99,4 +98,5 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
   );
 };
 
+Table.displayName = 'Table';
 export default Table;

@@ -33,4 +33,5 @@ const Tooltip = ({
   );
 };
 
+Tooltip.displayName = 'Tooltip';
 export default Tooltip;
