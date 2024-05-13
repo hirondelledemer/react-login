@@ -1,17 +1,15 @@
 import { test, expect } from '@playwright/test';
-import { getDriver } from './driver';
+import { AppDriver } from './utils/driver';
 import AxeBuilder from '@axe-core/playwright';
+import { urls } from './utils/data';
 
 test.describe('Home', () => {
   test('should not have any automatically detectable accessibility issues', async ({
     page,
   }) => {
-    const {
-      goto,
-      urls: { base },
-    } = getDriver({ page });
+    const loginPage = new AppDriver(page);
 
-    await goto(base);
+    await loginPage.goto(urls.BASE);
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 

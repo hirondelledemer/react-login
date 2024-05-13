@@ -1,50 +1,47 @@
 import { test, expect } from '@playwright/test';
-import { getDriver } from './driver';
+import { AppDriver } from './utils/driver';
 import AxeBuilder from '@axe-core/playwright';
+import { urls, USER } from './utils/data';
 
 test.describe('Login', () => {
-  test.describe('Login page', () => {
-    test('user logs in', async ({ page }) => {
-      const { vals, urls, serversTitle, ...driver } = getDriver({ page });
+  test('user should log in with right credentials', async ({ page }) => {
+    const loginPage = new AppDriver(page);
 
-      await driver.goto(urls.login);
+    await loginPage.goto(urls.LOGIN);
 
-      await expect(page).toHaveScreenshot('login-page.png');
+    await expect(page).toHaveScreenshot('login-page.png');
 
-      await driver.fillUsername(vals.username);
-      await driver.fillPassword(vals.password);
-      await driver.clickLogin();
+    await loginPage.fillUsername(USER.USERNAME);
+    await loginPage.fillPassword(USER.PASSWORD);
+    await loginPage.clickLoginButton();
 
-      await expect(page).toHaveURL(urls.servers);
-      await expect(serversTitle).toBeVisible();
-    });
+    await expect(page).toHaveURL(urls.SERVERS);
+    await expect(loginPage.serversTitle).toBeVisible();
   });
 
-  test('password is incorrect', async ({ page }) => {
-    const { vals, urls, error, ...driver } = getDriver({ page });
-    await driver.goto(urls.login);
+  test.describe('password is incorrect', () => {
+    test('should show error', async ({ page }) => {
+      const loginPage = new AppDriver(page);
 
-    await driver.fillUsername(vals.username);
-    await driver.fillPassword('incorrect');
-    await driver.clickLogin();
+      await loginPage.goto(urls.LOGIN);
+      await loginPage.fillUsername(USER.USERNAME);
+      await loginPage.fillPassword('incorrect');
+      await loginPage.clickLoginButton();
 
-    await expect(error).toBeVisible();
-    await expect(page).toHaveURL(urls.login);
-    await expect(page).toHaveScreenshot('login-error-bad-password.png');
+      await expect(loginPage.error).toBeVisible();
+      await expect(page).toHaveURL(urls.LOGIN);
+      await expect(page).toHaveScreenshot('login-error-bad-password.png');
+    });
   });
 
   test('should not have any automatically detectable accessibility issues', async ({
     page,
   }) => {
-    const {
-      goto,
-      urls: { login },
-    } = getDriver({ page });
+    const loginPage = new AppDriver(page);
 
-    await goto(login);
+    await loginPage.goto(urls.LOGIN);
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
-
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 });

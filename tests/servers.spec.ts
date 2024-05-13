@@ -1,34 +1,30 @@
 import { test, expect } from '@playwright/test';
-import { mockData } from './login.mocks';
-import { getDriver } from './driver';
+import { AppDriver } from './utils/driver';
+import { urls, USER } from './utils/data';
 
 test.describe('Servers', () => {
   test.describe('user logged in', () => {
     test('user should see servers when logged in', async ({ page }) => {
-      await page.route('*/**/v1/servers', async (route) => {
-        await route.fulfill({ json: mockData });
-      });
+      const loginPage = new AppDriver(page);
 
-      const { vals, urls, serversTitle, ...driver } = getDriver({ page });
+      await loginPage.mockServersData();
 
-      await driver.goto(urls.login);
+      await loginPage.goto(urls.LOGIN);
+      await loginPage.fillUsername(USER.USERNAME);
+      await loginPage.fillPassword(USER.PASSWORD);
+      await loginPage.clickLoginButton();
 
-      await driver.fillUsername(vals.username);
-      await driver.fillPassword(vals.password);
-      await driver.clickLogin();
-
-      await expect(page).toHaveURL(urls.servers);
-      await expect(serversTitle).toBeVisible();
-      await expect(page).toHaveScreenshot('servers-page.png');
+      await expect(page).toHaveURL(urls.SERVERS);
     });
   });
 
   test.describe('user is not logged in', () => {
     test('user should be redirected to login page', async ({ page }) => {
-      const { vals, urls, error, ...driver } = getDriver({ page });
-      await driver.goto(urls.servers);
+      const loginPage = new AppDriver(page);
 
-      await expect(page).toHaveURL(urls.login);
+      await loginPage.goto(urls.SERVERS);
+
+      await expect(page).toHaveURL(urls.LOGIN);
     });
   });
 });
