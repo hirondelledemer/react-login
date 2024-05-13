@@ -4,7 +4,7 @@ import LoginSection from '@src/components/LoginSection';
 
 const Login: React.FC = () => {
   return (
-    <div className='h-sreen'>
+    <div className='h-screen'>
       <Header />
       <LoginSection />
     </div>

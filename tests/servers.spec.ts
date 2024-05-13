@@ -24,7 +24,7 @@ test.describe('Servers', () => {
   });
 
   test.describe('user is not logged in', () => {
-    test('password is incorrect', async ({ page }) => {
+    test('user should be redirected to login page', async ({ page }) => {
       const { vals, urls, error, ...driver } = getDriver({ page });
       await driver.goto(urls.servers);
 

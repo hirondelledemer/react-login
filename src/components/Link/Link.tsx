@@ -12,7 +12,7 @@ const Link = forwardRef<Ref, LinkProps>((props, ref) => {
   const { className, children, ...rest } = props;
 
   const merged = clsx(
-    'inline-block mt-4 text-center text-blue-500 md:mt-0 mx-6 hover:underline',
+    'inline-block mt-4 text-center text-blue-600 md:mt-0 mx-6 hover:underline',
     className,
   );
 
