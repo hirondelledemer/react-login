@@ -12,7 +12,7 @@ export interface ColumnProps<T> {
 
 interface TableProps<T> {
   columns: Array<ColumnProps<T>>;
-  data?: T[];
+  data: T[];
   pageSize: number;
 }
 
@@ -36,7 +36,7 @@ const Table = <T,>({ data, columns, pageSize }: TableProps<T>) => {
         >
           <span>{column.title}</span>
           <SortButton
-            active={sortConfig && sortConfig.key === column.key}
+            active={sortConfig ? sortConfig.key === column.key : false}
             direction={
               sortConfig && sortConfig.key === column.key
                 ? sortConfig && sortConfig.direction

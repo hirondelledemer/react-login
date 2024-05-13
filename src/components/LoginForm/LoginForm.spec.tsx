@@ -47,7 +47,7 @@ describe('LoginForm', () => {
     render(<LoginForm />);
 
     const userNameInput = screen.getByRole('textbox', { name: /username/i });
-    const passwordInput = document.querySelector('input[type="password"]');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const loginButton = screen.getByRole('button');
 
     fireEvent.change(userNameInput, { target: { value: username } });

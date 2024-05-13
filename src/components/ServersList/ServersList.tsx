@@ -29,7 +29,7 @@ const ServersList: React.FC = () => {
           Servers
         </h1>
       </div>
-      {isLoading ? (
+      {isLoading || !data ? (
         <Skeleton />
       ) : (
         <Table data={data} columns={columns} pageSize={10} />

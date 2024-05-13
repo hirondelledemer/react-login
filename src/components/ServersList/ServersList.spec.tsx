@@ -15,7 +15,7 @@ describe('ServersList', () => {
           data: serversData,
           isLoading: false,
           error: undefined,
-        } as UseQueryResult<Server[], Error>),
+        } as unknown as UseQueryResult<Server[], Error>),
     );
     render(<ServersList />);
     const rows = document.querySelectorAll('tr');
@@ -30,7 +30,7 @@ describe('ServersList', () => {
             data: serversData,
             isLoading: false,
             error: undefined,
-          } as UseQueryResult<Server[], Error>),
+          } as unknown as UseQueryResult<Server[], Error>),
       );
       render(<ServersList />);
       const rows = document.querySelectorAll('tr');
@@ -62,7 +62,7 @@ describe('ServersList', () => {
             data: serversData,
             isLoading: false,
             error: undefined,
-          } as UseQueryResult<Server[], Error>),
+          } as unknown as UseQueryResult<Server[], Error>),
       );
       render(<ServersList />);
       const rows = document.querySelectorAll('tr');
