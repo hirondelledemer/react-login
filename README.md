@@ -8,9 +8,9 @@ A live demo is available [here](https://react-login-seven-virid.vercel.app/).
 
 Example screens:
 
-![Login Page](assets/images/login-page.png)
+![Login Page](assets/images/login-page.png 'Login Page')
 
-![Servers Page](assets/images/servers-page.png)
+![Servers Page](assets/images/servers-page.png 'Servers Page')
 
 ## Stack
 
@@ -93,6 +93,7 @@ yarn serve
 - Implement table search. Add an additional field above the table where users can search servers by name.
 - Create a more exciting home page.
 - Use a translation manager to make the app bilingual.
+- Improve accessibility tests. Currently, there is one test covering basic violations on the Login page. Extend it to other pages.
 
 ### Code Improvements
 
