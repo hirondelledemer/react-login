@@ -25,7 +25,9 @@ const ServersList: React.FC = () => {
   return (
     <section className='bg-white px-10 md:px-40 min-h-screen min-w-screen py-10'>
       <div className='flex items-center gap-x-3'>
-        <h2 className='text-lg font-medium text-gray-800'>Severs</h2>
+        <h1 className='mt-4 text-2xl font-medium text-gray-800 lg:text-3xl'>
+          Servers
+        </h1>
       </div>
       {isLoading ? (
         <Skeleton />

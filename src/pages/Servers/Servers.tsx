@@ -4,7 +4,7 @@ import React from 'react';
 
 const Servers: React.FC = () => {
   return (
-    <div className='h-sreen w-screen'>
+    <div className='h-screen w-screen'>
       <Header />
       <ServersList />
     </div>

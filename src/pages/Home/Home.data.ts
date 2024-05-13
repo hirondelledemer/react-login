@@ -3,7 +3,7 @@ export const todos = [
   'Introduce dark mode',
   'Improve suggestion tooltip',
   'Implement table search',
-  'More exiting home page :)',
+  'More exciting home page :)',
   'Use translation manager to make app bilingual',
   'Create generic button that would allow create custom buttons (currently one is needed in table component, but in future more might be needed)',
   'Add storybook for generic components (this would allow nicer preview and testing for components such as button, link, table, etc.)',

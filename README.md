@@ -1,18 +1,16 @@
-# React Login example
-
-React Login Page example
+# React Login Page example
 
 <br>
 
 ## Demo
 
-Demo can be found [here](https://react-login-seven-virid.vercel.app/)
+A live demo is available [here](https://react-login-seven-virid.vercel.app/).
 
 Example screens:
-<img src="assets/images/login-page.png" />
-<img src="assets/images/servers-page.png" />
 
-<br>
+![Login Page](assets/images/login-page.png)
+
+![Servers Page](assets/images/servers-page.png)
 
 ## Stack
 
@@ -21,7 +19,7 @@ Example screens:
 - ESLint
 - Webpack
 - React Fast Refresh + Webpack HMR
-- Tailwind css
+- Tailwind CSS
 - Jest
 - Playwright
 - React Router Dom
@@ -31,15 +29,11 @@ Example screens:
 
 ## Installation
 
-<br>
-
-Clone the repository :
+Clone the repository:
 
 ```
 git clone git@github.com:hirondelledemer/react-login.git
 ```
-
-<br>
 
 Install dependencies:
 
@@ -49,29 +43,21 @@ yarn install
 
 <br />
 
-## Start : Development
+## Development
 
-To develop and run application, you need to run following command :
+To start development:
 
 ```
 yarn start
 ```
 
-<br />
-
-## Lint : Development
-
-To lint application source code using ESLint via this command :
+To lint:
 
 ```
 yarn lint
 ```
 
-<br />
-
-## Test : Development
-
-To test application
+To run tests:
 
 ```
 yarn test         // unit tests
@@ -81,21 +67,15 @@ yarn test:e2e     // e2e tests
 
 <br />
 
-## Build : Production
+## Production
 
-Distribution files output will be generated in `dist/` directory by default.
-
-To build the production ready files for distribution, use the following command :
+To build production-ready files:
 
 ```
 yarn build
 ```
 
-<br />
-
-## Serve : Production
-
-This command serves build files from `dist/` directory.
+To serve production files:
 
 ```
 yarn serve
@@ -105,29 +85,21 @@ yarn serve
 
 ## TODOs
 
-### Product improvements
+### Product Improvements
 
-- Unify heading styles
-- Introduce dark mode
-- Improve suggestion tooltip
+- Unify heading styles.
+- Introduce dark mode.
+- Improve suggestion tooltip. For demo purposes, there is only one user; consider adding a "Fill User Data" button to fill the login form.
+- Implement table search. Add an additional field above the table where users can search servers by name.
+- Create a more exciting home page.
+- Use a translation manager to make the app bilingual.
 
-since for demo purposes there is only one user, there might be a button "fill user data" which would fill login form
+### Code Improvements
 
-- Implement table search
+- Create a generic button that allows the creation of custom buttons (e.g., currently needed in the table component, but more might be needed in the future).
+- Add Storybook for generic components to provide nicer previews and testing for components such as buttons, links, tables, etc.
 
-additional field above the table where user could search servers by name
+### Dev Experience Improvements
 
-- More exiting home page :)
-- Use translation manager to make app bilingual
-
-### Code improvements
-
-- Create generic button that would allow create custom buttons (currently one is needed in table component, but in future more might be needed)
-- Add storybook for generic components (this would allow nicer preview and testing for components such as button, link, table, etc.)
-
-### Dev experience improvements
-
-- Upload playwright-report folder with Azure Pipelines (this would allow see failing tests more clearly)
-- Show Deployment link on PR's
-
-<br />
+- Upload `playwright-report` folder with Azure Pipelines to allow clearer visibility of failing tests.
+- Show deployment link on PRs.

@@ -1,9 +1,9 @@
-import { Page, Locator } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 export const getDriver = ({ page }: { page: Page }) => {
   const usernameInput = page.getByPlaceholder('username');
   const passwordInput = page.getByPlaceholder('password');
-  const serversTitle = page.getByText('servers');
+  const serversTitle = page.getByRole('heading', { name: 'Servers' });
   const error = page.getByText('Username or password is not valid');
   const loginButton = page
     .locator('form')

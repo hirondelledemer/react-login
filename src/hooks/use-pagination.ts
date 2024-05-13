@@ -9,9 +9,9 @@ const usePagination = <T>(items: T[], pageLimit: number) => {
   };
 
   const getPageData = () => {
-    const s = pageNumber * pageLimit;
-    const e = s + pageLimit;
-    return items.slice(s, e);
+    const startPoint = pageNumber * pageLimit;
+    const endPoint = startPoint + pageLimit;
+    return items.slice(startPoint, endPoint);
   };
 
   const goToNextPage = () => {

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import { ProtectedRoutes } from './ProtectedRoutes';
-import Servers from '@src/pages/Severs';
+import Servers from '@src/pages/Servers';
 import { HOME, LOGIN, SERVERS } from '@src/utils/consts/routes';
 import '../index.css';
 import NotFound from '@src/pages/NotFound';
