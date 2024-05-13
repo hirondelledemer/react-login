@@ -33,7 +33,7 @@ const LoginForm: React.FC = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
 
-  const handleSumit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { username, password } = values;
     if (!username || !password) {
@@ -47,7 +47,7 @@ const LoginForm: React.FC = () => {
     login({ username, password });
   };
 
-  const handleFieldOnChange = (field: FormFields, value: string) => {
+  const handleFieldChange = (field: FormFields, value: string) => {
     setValues((val) => ({
       ...val,
       [field]: value,
@@ -55,16 +55,14 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <form className='w-full lg:max-w-xl' onSubmit={handleSumit}>
+    <form className='w-full lg:max-w-xl' onSubmit={handleSubmit}>
       <Input
         name={FormFields.USERNAME}
         placeholder='Username'
         aria-label='username'
         value={values.username}
         icon={<UserIcon />}
-        onChange={(e) =>
-          handleFieldOnChange(FormFields.USERNAME, e.target.value)
-        }
+        onChange={(e) => handleFieldChange(FormFields.USERNAME, e.target.value)}
         errorMessage={errors[FormFields.USERNAME]}
       />
       <Input
@@ -75,9 +73,7 @@ const LoginForm: React.FC = () => {
         className='mt-4'
         icon={<PasswordIcon />}
         errorMessage={errors[FormFields.PASSWORD]}
-        onChange={(e) =>
-          handleFieldOnChange(FormFields.PASSWORD, e.target.value)
-        }
+        onChange={(e) => handleFieldChange(FormFields.PASSWORD, e.target.value)}
       />
       <div className='mt-8 md:flex md:items-center'>
         <Button type='submit' disabled={isLoading}>

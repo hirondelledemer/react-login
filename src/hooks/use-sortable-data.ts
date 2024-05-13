@@ -6,7 +6,6 @@ interface SortConfig<T> {
   direction: SortDirection;
 }
 
-// TODO: add search
 export const useSortableData = <T extends { [K in keyof T]: T[K] }>(
   items: T[],
   config: SortConfig<T> | null,
