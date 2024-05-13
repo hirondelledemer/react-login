@@ -21,7 +21,11 @@ type FormErrors = {
 };
 
 const LoginForm: React.FC = () => {
-  const [login, isLoading, serverError] = useLogin();
+  const {
+    mutate: login,
+    isPending: isLoading,
+    error: serverError,
+  } = useLogin();
   const [values, setValues] = useState<FormValues>({
     [FormFields.USERNAME]: '',
     [FormFields.PASSWORD]: '',

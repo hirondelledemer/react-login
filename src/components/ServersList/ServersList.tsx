@@ -3,7 +3,7 @@ import React from 'react';
 import Table from '../Table';
 import { ColumnProps } from '../Table/Table';
 import Skeleton from '../Skeleton';
-import { Server } from '@src/utils/types/servers';
+import { Server } from '@src/utils/types/data';
 
 const ServersList: React.FC = () => {
   const { data, isLoading, error } = useServersList();

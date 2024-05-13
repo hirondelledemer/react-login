@@ -5,7 +5,7 @@ import * as useServersHook from '@src/hooks/use-servers';
 import { UseQueryResult } from '@tanstack/react-query';
 import { serversData } from './ServersList.mocks';
 import { sortDownTestId } from '../SortButton/SortButton';
-import { Server } from '@src/utils/types/servers';
+import { Server } from '@src/utils/types/data';
 
 describe('ServersList', () => {
   it('should show servers', () => {

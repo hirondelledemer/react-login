@@ -4,12 +4,19 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import LoginForm from './LoginForm';
 import * as loginHooks from '@src/hooks/use-login';
+import { UseMutationResult } from '@tanstack/react-query';
+import { InputProps, UserData } from '@src/utils/types/data';
 
 describe('LoginForm', () => {
   it('should username and password inputs', async () => {
-    jest
-      .spyOn(loginHooks, 'useLogin')
-      .mockImplementation(() => [jest.fn(), false, undefined]);
+    jest.spyOn(loginHooks, 'useLogin').mockImplementation(
+      () =>
+        ({
+          mutate: jest.fn(),
+          isPending: false,
+          error: undefined,
+        } as unknown as UseMutationResult<UserData, Error, InputProps>),
+    );
 
     render(<LoginForm />);
 
@@ -27,9 +34,15 @@ describe('LoginForm', () => {
     const password = 'pass';
 
     const loginSpy = jest.fn();
-    jest
-      .spyOn(loginHooks, 'useLogin')
-      .mockImplementation(() => [loginSpy, false, undefined]);
+
+    jest.spyOn(loginHooks, 'useLogin').mockImplementation(
+      () =>
+        ({
+          mutate: loginSpy,
+          isPending: false,
+          error: undefined,
+        } as unknown as UseMutationResult<UserData, Error, InputProps>),
+    );
 
     render(<LoginForm />);
 
@@ -46,9 +59,14 @@ describe('LoginForm', () => {
 
   describe('loading', () => {
     it('should disable login button', () => {
-      jest
-        .spyOn(loginHooks, 'useLogin')
-        .mockImplementation(() => [jest.fn(), true, undefined]);
+      jest.spyOn(loginHooks, 'useLogin').mockImplementation(
+        () =>
+          ({
+            mutate: jest.fn(),
+            isPending: true,
+            error: undefined,
+          } as unknown as UseMutationResult<UserData, Error, InputProps>),
+      );
 
       render(<LoginForm />);
 
@@ -61,9 +79,14 @@ describe('LoginForm', () => {
   describe('errors', () => {
     describe('inputs are empty', () => {
       it('should show "required" error', () => {
-        jest
-          .spyOn(loginHooks, 'useLogin')
-          .mockImplementation(() => [jest.fn(), false, undefined]);
+        jest.spyOn(loginHooks, 'useLogin').mockImplementation(
+          () =>
+            ({
+              mutate: jest.fn(),
+              isPending: false,
+              error: undefined,
+            } as unknown as UseMutationResult<UserData, Error, InputProps>),
+        );
 
         render(<LoginForm />);
 
@@ -80,13 +103,14 @@ describe('LoginForm', () => {
 
     describe('server error', () => {
       it('should show error message', () => {
-        jest
-          .spyOn(loginHooks, 'useLogin')
-          .mockImplementation(() => [
-            jest.fn(),
-            false,
-            new Error('username or password is not valid'),
-          ]);
+        jest.spyOn(loginHooks, 'useLogin').mockImplementation(
+          () =>
+            ({
+              mutate: jest.fn(),
+              isPending: false,
+              error: new Error('username or password is not valid'),
+            } as unknown as UseMutationResult<UserData, Error, InputProps>),
+        );
 
         render(<LoginForm />);
 

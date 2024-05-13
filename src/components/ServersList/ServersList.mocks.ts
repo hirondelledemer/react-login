@@ -1,4 +1,4 @@
-import { Server } from '@src/utils/types/servers';
+import { Server } from '@src/utils/types/data';
 
 export const serversData: Server[] = [
   {
